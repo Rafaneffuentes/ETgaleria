@@ -1,0 +1,33 @@
+{% extends "./base.html" %}
+
+{% block title %} Pagina Contacto {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="container form">
+            <form action="respuesta.html" method="get" class="form-contacto" id="Form_Contacto" >
+                <fieldset>
+                    <legend class="text-center header">Formulario Contacto</legend>
+          
+                    <div class="mb-2">
+                        <input class="form-control" id="userName" type="text" placeholder="Nombre" required/>
+                    </div>
+             
+                    <div class="mb-2">
+                        <input class="form-control" id="userEmail" type="email" placeholder="Correo Electrónico" required/>
+                    </div>
+             
+                    <div class="mb-2">
+                        <textarea class="form-control" id="userMens" type="text" placeholder="Introduzca su masaje para nosotros aquí. Nos pondremos en contacto con usted"  rows="5"  required></textarea>
+                    </div>
+    
+                    <div class="mb-3 d-grid">
+                        <button class="btn btn-primary btn-lg" type="submit">Enviar</button>
+                        <!-- <button class="btn btn-primary btn-lg" type="button" onclick="valForm()">Enviar</button> -->
+                    </div>
+                </fieldset>
+            </form>
+            <div class="alert alert-success mt-2 d-none" id="alertSuccess"></div>
+    </div>
+</div>
+{% endblock %}

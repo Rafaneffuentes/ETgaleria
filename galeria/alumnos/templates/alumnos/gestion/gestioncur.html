@@ -1,0 +1,58 @@
+{% extends "../base.html" %}
+{% block title %} Gestión de Artículo {% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-dismissible alert-success">
+                <strong class="text-dark">{{ message }}</strong>
+            </div>
+            {% endfor %}
+            {% endif %}
+            
+            <h1>Listado de Obras</h1>
+            <div class="p-2">
+                <a href="{% url 'nuevocur' %}" class="btn btn-primary">Agregar Obras</a>
+              </div>
+
+            <div class="table-responsive py-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>NOMBRE</th>
+                            <th>NOMBRE AUTOR</th>
+                            <th>TIPO DE OBRA</th>
+                            <th>ESTADO DE EXPOSICIÓN</th>
+                            <th>Descripcion</th>
+                            <th>IMG</th>
+                            {% if user.username == 'admin' %}
+                            <th colspan="5">Opciones</th>
+                            {% endif %}
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obr in obras %}
+                        <tr>
+                            <td>{{obr.codigo}}</td>
+                            <td>{{obr.nombre}}</td>
+                            <td>{{obr.nombre_autor}}</td>
+                            <td>{{obr.tipo}}</td>
+                            <td>{{obr.estado}}</td>
+                            <td>{{obr.descripcion}}</td>
+                           
+                            <td><img src="{{obr.img.url}}" alt="" width="50px"></td>
+                            {% if user.username == 'admin' %}
+                                <td><a href="editarcur/{{obr.codigo}}" class="btn btn-primary">Editar </a></td>
+                                <td><a href="borrarcur/{{obr.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td> 
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

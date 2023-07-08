@@ -1,0 +1,39 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %} PG | CURSOS {% endblock %}
+
+{% block body %}
+    <div>
+        <h1>OBRAS</h1>
+    </div>
+    <div class="p-2">
+      {% if user.is_authenticated %}
+        <a href="{% url 'gestioncur'%}" class="btn btn-primary">Gestion de obras</a>
+      {% endif %}
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <!--  DESDE BASE DE DATOS -->
+        {% for obr in obras %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{obr.img.url}}" alt="">
+            <div class="card-body">
+              <div class="card-text">
+                <p>{{obr.nombre}} <br>
+                  Nombre autor		: {{obr.nombre_autor}} <br>
+                  Estado		: {{obr.estado}} <br>
+                  Tipo de obra	: {{obr.tipo}}
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="verobra/{{obr.codigo}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Mas Información..</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
