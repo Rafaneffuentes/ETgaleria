@@ -3,6 +3,8 @@
 {% block title %} PG | NOSOTROS  {% endblock %}
 
 {% block body %}
+    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
+
     <div>
         <h1>NOSOTROS</h1>
     </div>
@@ -109,5 +111,25 @@
                 </div>
         </div>
     </div>
+    <div class="row align-items-center">
+        <div class="col-12 col-md-4 text-center">
+            <h1>El Tiempo</h1>
+            <h2 id="estacion"></h2>
+            <h3 id="estado"></h3>
+            <img src="{% static 'img/parcial_soleado.gif' %}" class="img-fluid" width="200px">
+            <div id="temperatura">
+                <div id="temp">20</div>
+                <div id="grados">º</div>
+                <br>
+                <div id="hum">Humedad 49%</div>
+            </div>
+        </div>
     </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" 
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" 
+        crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/api.js' %}"></script>
 {% endblock %}
