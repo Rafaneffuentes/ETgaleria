@@ -2,7 +2,8 @@
 from django.shortcuts import render, redirect
 from .models import  TiposObras, Obras
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import Permission, User
 
 from .forms import ObrasForm
 
@@ -58,6 +59,8 @@ def gestioncur(request):
 
 # CRUD
 # https://www.youtube.com/watch?v=ezIj71CX944
+@login_required
+@permission_required('alumnos.add_obras')
 def nuevocur(request):
     formulario = ObrasForm(request.POST or None, request.FILES or None)
     if formulario.is_valid():
@@ -65,6 +68,8 @@ def nuevocur(request):
        return redirect('gestioncur')
     return render(request, "alumnos/gestion/nuevocurso.html", {"formulario": formulario})
 
+@login_required
+@permission_required('alumnos.change_obras')
 def editarcur(request, codigo):
     obras = Obras.objects.get(codigo=codigo)
     formulario = ObrasForm(request.POST or None, request.FILES or None, instance=obras)
@@ -73,6 +78,8 @@ def editarcur(request, codigo):
        return redirect('gestioncur')
     return render(request, "alumnos/gestion/editarcurso.html", {"formulario": formulario})
 
+@login_required
+@permission_required('alumnos.delete_obras')
 def borrarcurso(request, codigo):
     obras = Obras.objects.get(codigo=codigo)
     obras.delete()
